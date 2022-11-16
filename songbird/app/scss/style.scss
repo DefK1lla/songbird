@@ -2,5 +2,87 @@
 @import "libs";
 @import "base";
 
+.link {
+  color: inherit;
+  text-decoration: none;
+
+  &:hover {
+    color: #009A76;
+  }
+}
+
+.gh-link {
+  position: relative;
+
+  padding-left: 40px;
+
+  &::before {
+    content: url(../assets/icons/gh.svg);
+
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+}
+
+.header {
+  padding: 10px 0;
+
+  &__inner {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+.logo {
+  width: 200px;
+  margin-bottom: 15px;
+}
+
+.nav {
+  &__list {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__item {
+    margin: 0 15px;
+  }
+
+  &__link {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: #009A76;
+    }
+  }
+}
+
+.footer {
+  padding: 10px 0;
+
+  &__inner {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+}
+
+.school-logo {
+  width: 200px;
+  margin: 15px;
+}
+
+.copy {
+  font-weight: 300;
+
+  opacity: 0.6;
+}
 
 @import "media";
