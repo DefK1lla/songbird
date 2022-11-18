@@ -6,6 +6,7 @@
   "homepage": "https://rolling-scopes-school.github.io/defk1lla-JSFE2022Q3",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "predeploy": "gulp build",
     "deploy": "gh-pages -d dist"
   },
   "author": "Sedrak Adoyan",
