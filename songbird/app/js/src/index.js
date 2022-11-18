@@ -10,7 +10,7 @@ const renderPage = {
     console.log('start');
   },
   'gallery': Gallery.render
-}
+};
 
 function changePage(e) {
   const page = getPageHash();

@@ -8,6 +8,7 @@ class Nav extends HTMLElement {
     navList.className = 'nav__list';
     this.append(navList);
 
+
     const navElems = list.map(elem => {
       const navItem = document.createElement('li');
       navItem.className = 'nav__item';

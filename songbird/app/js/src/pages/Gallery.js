@@ -16,6 +16,7 @@ class Gallery {
     this.player = new Player();
     this.inner.append(this.player);
   }
+
   render = () => {
     const page = document.querySelector('.page');
     page.innerHTML = '';

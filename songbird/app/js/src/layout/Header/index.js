@@ -8,14 +8,8 @@ import Nav from '../../components/Nav';
 
 class Header {
   constructor() {
-    const locale = LocalStorage.getLocale();
+    const locale = LocalStorage.getLocale() || 'en';
     this.navList = ['Start game', 'Gallery', locale];
-
-    if (locale === 'en') {
-      this.content = en;
-    } else {
-      this.content = ru;
-    }
 
     this.container = new Container();
 
