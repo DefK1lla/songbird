@@ -43,7 +43,8 @@ class Player extends HTMLDivElement {
 
     this.progressBar = document.createElement('div');
     this.progressBar.className = 'player__progress-bar';
-    this.progressBar.addEventListener('mousedown', this.handleMouseDown);
+    this.progressBar.addEventListener('mousedown', this.handleRewindStart);
+    this.progressBar.addEventListener('touchstart', this.handleRewindStart);
     this.progressContainer.append(this.progressBar);
 
     this.progress = document.createElement('div');
@@ -64,7 +65,7 @@ class Player extends HTMLDivElement {
 
   handleMetaLoad = (e) => {
     this.duration.innerHTML = formatSeconds(this.audio.duration);
-  }
+  };
 
   handleBtnClick = (e) => {
     if (this.isPlaying) {
@@ -80,24 +81,30 @@ class Player extends HTMLDivElement {
     this.audio.volume = e.target.value / 100;
   };
 
-  handleMouseDown = (e) => {
-    document.addEventListener('mousemove', this.handleMouseMove);
-    document.addEventListener('mouseup', this.handleMouseUp);
+  handleRewindStart = (e) => {
+    document.addEventListener('touchmove', this.handleRewind);
+    document.addEventListener('touchend', this.handleRewindEnd);
+    document.addEventListener('mousemove', this.handleRewind);
+    document.addEventListener('mouseup', this.handleRewindEnd);
   };
 
-  handleMouseMove = (e) => {
-    e.preventDefault();
+  handleRewind = (e) => {
+    if (!e.touches) e.preventDefault();
     this.isSliding = true;
-    this.progress.style.width = (e.offsetX / this.progressBar.clientWidth) * 100 + '%';
+    const offsetX = e.touches ? e.touches[0].pageX : e.pageX;
+    this.progress.style.width = ((offsetX - this.progressBar.offsetLeft) / this.progressBar.clientWidth) * 100 + '%';
   };
 
-  handleMouseUp = (e) => {
-    document.removeEventListener('mousemove', this.handleMouseMove);
+  handleRewindEnd = (e) => {
+    document.removeEventListener('mousemove', this.handleRewind);
+    document.removeEventListener('touchmove', this.handleRewind);
 
-    this.setProgress(e.offsetX);
+    const offsetX = e.changedTouches ? e.changedTouches[0].pageX : e.pageX;
+    this.setProgress(offsetX - this.progressBar.offsetLeft);
     this.isSliding = false;
 
-    document.removeEventListener('mouseup', this.handleMouseUp);
+    document.removeEventListener('mouseup', this.handleRewindEnd);
+    document.removeEventListener('touchend', this.handleRewindEnd);
   };
 
   handleProgress = (e) => {
