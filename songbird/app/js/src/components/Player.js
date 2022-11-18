@@ -92,7 +92,10 @@ class Player extends HTMLDivElement {
     if (!e.touches) e.preventDefault();
     this.isSliding = true;
     const offsetX = e.touches ? e.touches[0].pageX : e.pageX;
-    this.progress.style.width = ((offsetX - this.progressBar.offsetLeft) / this.progressBar.clientWidth) * 100 + '%';
+    const currentProgress = ((offsetX - this.progressBar.offsetLeft) / this.progressBar.clientWidth) * 100;
+    this.progress.style.width = currentProgress + '%';
+    const currentTime = (currentProgress * this.audio.duration) / 100;
+    this.currentTime.innerHTML = formatSeconds(currentTime);
   };
 
   handleRewindEnd = (e) => {
