@@ -41,12 +41,14 @@ class Player extends HTMLDivElement {
 
     this.progressBar = document.createElement('div');
     this.progressBar.className = 'player__progress-bar';
-    this.progressBar.addEventListener('mousedown', this.handleRewindStart);
-    this.progressBar.addEventListener('touchstart', this.handleRewindStart);
     this.progressContainer.append(this.progressBar);
 
-    this.progress = document.createElement('div');
+    this.progress = document.createElement('input');
+    this.progress.type = 'range';
+    this.progress.value = 0;
     this.progress.className = 'player__progress';
+    this.progress.addEventListener('input', this.handleProgressInput);
+    this.progress.addEventListener('change', this.handleProgressChange);
     this.progressBar.append(this.progress);
 
     this.time = document.createElement('div');
@@ -62,6 +64,9 @@ class Player extends HTMLDivElement {
   }
 
   handleMetaLoad = (e) => {
+    this.progress.min = 0;
+    this.progress.max = Math.ceil(this.audio.duration);
+    this.progress.step = 1;
     this.duration.innerHTML = formatSeconds(this.audio.duration);
   };
 
@@ -79,40 +84,27 @@ class Player extends HTMLDivElement {
     this.audio.volume = e.target.value / 100;
   };
 
-  handleRewindStart = (e) => {
-    document.addEventListener('touchmove', this.handleRewind);
-    document.addEventListener('touchend', this.handleRewindEnd);
-    document.addEventListener('mousemove', this.handleRewind);
-    document.addEventListener('mouseup', this.handleRewindEnd);
-  };
-
-  handleRewind = (e) => {
-    if (!e.touches) e.preventDefault();
+  handleProgressInput = (e) => {
     this.isSliding = true;
-    const offsetX = e.touches ? e.touches[0].pageX : e.pageX;
-    const currentProgress = ((offsetX - this.progressBar.offsetLeft) / this.progressBar.clientWidth) * 100;
-    this.progress.style.width = currentProgress + '%';
-    const currentTime = (currentProgress * this.audio.duration) / 100;
-    this.currentTime.innerHTML = formatSeconds(Math.max(currentTime, 0));
+    this.paintProgress();
+    this.currentTime.innerHTML = formatSeconds(e.target.value);
   };
 
-  handleRewindEnd = (e) => {
-    document.removeEventListener('mousemove', this.handleRewind);
-    document.removeEventListener('touchmove', this.handleRewind);
-
-    const offsetX = e.changedTouches ? e.changedTouches[0].pageX : e.pageX;
-    this.setProgress(offsetX - this.progressBar.offsetLeft);
+  handleProgressChange = (e) => {
+    this.audio.currentTime = e.target.value;
     this.isSliding = false;
+  }
 
-    document.removeEventListener('mouseup', this.handleRewindEnd);
-    document.removeEventListener('touchend', this.handleRewindEnd);
+  paintProgress = () => {
+    const { min, max, value } = this.progress;
+    this.progress.style.backgroundSize = (value - min) * 100 / (max - min) + '% 100%';
   };
 
   handleProgress = (e) => {
     if (this.isSliding) return;
-    const { duration, currentTime } = e.srcElement;
-    this.progress.style.width = (currentTime / duration) * 100 + '%';
-    this.currentTime.innerHTML = formatSeconds(currentTime);
+    this.progress.value = this.audio.currentTime;
+    this.paintProgress();
+    this.currentTime.innerHTML = formatSeconds(this.audio.currentTime);
   };
 
   setProgress = (newPos) => {
