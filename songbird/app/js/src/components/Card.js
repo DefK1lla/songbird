@@ -43,6 +43,7 @@ class Card extends HTMLDivElement {
 
     if (obj.audio) {
       this.player = new Player(obj.audio);
+      this.player.classList.add('card__audio');
       this.body.append(this.player);
     }
   }

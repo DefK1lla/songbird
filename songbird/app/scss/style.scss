@@ -306,11 +306,13 @@
     display: flex;
     justify-content: space-between;
     flex-wrap: wrap;
+    // align-items: stretch;
   }
 }
 
 .card {
   max-width: 300px;
+  min-height: 100%;
 
   margin: 15px;
 
@@ -330,6 +332,7 @@
     height: 100%;
 
     object-fit: cover;
+    object-position: center;
   }
 
   &__header,
@@ -347,11 +350,28 @@
     font-weight: 300;
   }
 
+  &__body {
+    position: relative;
+
+    min-height: 300px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
   &__description {
     margin-bottom: 10px;
 
     font-size: 16px;
     line-height: 1.5;
+  }
+
+  &__audio {
+    position: absolute;
+    bottom: 0;
+    left: 20px;
+    right: 20px;
   }
 }
 

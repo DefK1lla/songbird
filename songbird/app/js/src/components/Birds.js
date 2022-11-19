@@ -31,11 +31,13 @@ class Birds extends HTMLDivElement {
       this.birds = ru;
     }
 
+    this.cards = [];
+
     for (let birds of this.birds) {
       birds.forEach(bird => {
-        console.log(bird)
-        this.card = new Card(bird);
-        this.items.append(this.card);
+        const card = new Card(bird);
+        this.cards.push(card);
+        this.items.append(card);
       });
     }
   }
