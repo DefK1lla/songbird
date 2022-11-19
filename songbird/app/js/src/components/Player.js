@@ -95,7 +95,7 @@ class Player extends HTMLDivElement {
     const currentProgress = ((offsetX - this.progressBar.offsetLeft) / this.progressBar.clientWidth) * 100;
     this.progress.style.width = currentProgress + '%';
     const currentTime = (currentProgress * this.audio.duration) / 100;
-    this.currentTime.innerHTML = formatSeconds(currentTime);
+    this.currentTime.innerHTML = formatSeconds(Math.max(currentTime, 0));
   };
 
   handleRewindEnd = (e) => {
