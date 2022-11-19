@@ -3,10 +3,8 @@ import { formatSeconds } from "../utils/formateTime";
 const PLAY_ICON = './assets/icons/player/play.svg';
 const PAUSE_ICON = './assets/icons/player/pause.svg';
 
-const testAudio = "https://www.xeno-canto.org/sounds/uploaded/SDPCHKOHRH/XC485740-2019-06-22%20Selenga%20Milan%20brun%20cris%20de%20quemandage%203.mp3"
-
 class Player extends HTMLDivElement {
-  constructor() {
+  constructor(audioSrc) {
     super();
 
     this.isPlaying = false;
@@ -23,7 +21,7 @@ class Player extends HTMLDivElement {
     this.icon.className = 'player__icon';
     this.btn.append(this.icon);
 
-    this.audio = new Audio(testAudio);
+    this.audio = new Audio(audioSrc);
     this.audio.addEventListener('timeupdate', this.handleProgress);
     this.audio.addEventListener('ended', this.handleEnd);
     this.audio.addEventListener('loadeddata', this.handleMetaLoad);
