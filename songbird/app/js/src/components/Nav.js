@@ -1,3 +1,5 @@
+import LocalStorage from '../utils/localStorage';
+
 class Nav extends HTMLElement {
   constructor(list) {
     super();
@@ -8,18 +10,19 @@ class Nav extends HTMLElement {
     navList.className = 'nav__list';
     this.append(navList);
 
-
     const navElems = list.map(elem => {
       const navItem = document.createElement('li');
       navItem.className = 'nav__item';
       const navLink = document.createElement('a');
       navLink.className = 'nav__link';
-      navLink.href = elem.hash;
       navLink.textContent = elem.title.toUpperCase();
       navItem.append(navLink);
 
       if (elem.isLocale) {
+        this.locale = elem.title;
         navItem.addEventListener('click', this.handleLocaleClick);
+      } else {
+        navLink.href = elem.hash;
       }
 
       return navItem;
@@ -29,7 +32,8 @@ class Nav extends HTMLElement {
   }
 
   handleLocaleClick = (e) => {
-    console.log('change locale')
+    LocalStorage.setLocale(this.locale === 'en' ? 'ru' : 'en');
+    location.reload();
   }
 }
 
