@@ -9,7 +9,7 @@ import Nav from '../../components/Nav';
 class Header {
   constructor() {
     const locale = LocalStorage.getLocale() || 'en';
-    this.navList = ['Start game', 'Gallery', locale];
+    this.navList = ['Home', 'Start game', 'Gallery', locale];
 
     this.container = new Container();
 

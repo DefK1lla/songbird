@@ -2,10 +2,12 @@ import Header from './layout/Header';
 import Footer from './layout/Footer';
 
 import Gallery from './pages/Gallery';
+import Index from './pages/Index';
 
 import getPageHash from './utils/getPageHash';
 
 const renderPage = {
+  'index': Index.render,
   'start-game': () => {
     console.log('start');
   },
@@ -17,7 +19,7 @@ function changePage(e) {
   if (page in renderPage) {
     renderPage[page]();
   } else {
-    renderPage['start-game']();
+    renderPage['index']();
   }
 }
 
