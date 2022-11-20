@@ -18,12 +18,16 @@
   align-items: center;
   justify-content: center;
 
-  background: $color-primary;
-  border: none;
-  border-radius: 15px;
+  font-family: inherit;
+  text-decoration: none;
+  color: $color-primary;
+
+  border: 2px solid $color-primary;
   cursor: pointer;
 
   &:hover {
+    color: $color-light;
+
     background: $color-primary;
   }
 }
@@ -61,6 +65,11 @@
 }
 
 .nav {
+  max-width: 100%;
+  overflow: auto;
+
+  padding: 20px 0;
+
   &__list {
     display: flex;
     justify-content: space-between;
@@ -75,6 +84,7 @@
     font-size: inherit;
     text-decoration: none;
     color: $color-dark;
+    white-space: nowrap;
 
     padding: 15px 7px;
 
@@ -117,6 +127,7 @@
   &__btn {
     margin-right: 15px;
 
+    background: $color-primary;
     border-radius: 50%;
   }
 
