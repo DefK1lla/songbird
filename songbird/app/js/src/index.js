@@ -4,6 +4,7 @@ import Footer from './layout/Footer';
 import Gallery from './pages/Gallery';
 import Index from './pages/Index';
 
+import LocalStorage from './utils/localStorage';
 import getPageHash from './utils/getPageHash';
 
 const renderPage = {
@@ -25,6 +26,7 @@ function changePage(e) {
 }
 
 function init() {
+  document.documentElement.lang = LocalStorage.getLocale();
   Header.render();
   const page = getPageHash();
   changePage();
