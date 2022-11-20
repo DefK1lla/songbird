@@ -21,7 +21,10 @@ class Player extends HTMLDivElement {
     this.icon.className = 'player__icon';
     this.btn.append(this.icon);
 
-    this.audio = new Audio(audioSrc);
+    this.audio = document.createElement('audio');
+    this.audio.src = audioSrc;
+    this.audio.pauseOutSide = this.pauseOutSide;
+    this.append(this.audio);
     this.audio.addEventListener('timeupdate', this.handleProgress);
     this.audio.addEventListener('ended', this.handleEnd);
     this.audio.addEventListener('loadeddata', this.handleMetaLoad);
@@ -74,6 +77,7 @@ class Player extends HTMLDivElement {
     if (this.isPlaying) {
       this.pause();
     } else {
+      document.querySelectorAll('audio').forEach(audio => audio.pauseOutSide());
       this.play();
     }
 
@@ -125,6 +129,10 @@ class Player extends HTMLDivElement {
   pause = () => {
     this.audio.pause();
     this.icon.src = PLAY_ICON;
+  };
+
+  pauseOutSide = () => {
+    this.pause();
   };
 }
 

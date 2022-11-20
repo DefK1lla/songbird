@@ -31,6 +31,14 @@
 
     background: $color-primary;
   }
+
+  &:disabled {
+    color: $color-light;
+
+    border-color: $color-light;
+    background: $color-shadow;
+    pointer-events: none;
+  }
 }
 
 .gh-link {
@@ -171,7 +179,7 @@
       -webkit-appearance: none;
       border-radius: 50%;
       background: $color-light;
-      box-shadow: 0 0 2px 0 #555;
+      box-shadow: 0 0 2px 0 $color-shadow;
       transition: background .3s ease-in-out;
     }
 
@@ -240,7 +248,7 @@
       height: 15px;
       margin-top: -4px;
 
-      box-shadow: 0 0 2px 0 #555;
+      box-shadow: 0 0 2px 0 $color-shadow;
       border-radius: 50%;
       background: $color-light;
       cursor: pointer;
@@ -361,7 +369,6 @@
     position: relative;
 
     width: 100%;
-    min-height: 300px;
 
     display: flex;
     flex-direction: column;
@@ -419,6 +426,123 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+  }
+
+  &__card {
+    text-align: center;
+  }
+}
+
+.options-container {
+  max-width: 300px;
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.options {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &__item {
+    position: relative;
+
+    width: 100%;
+
+    padding: 5px 5px 5px 30px;
+
+    cursor: pointer;
+
+    &:not(:first-child) {
+      border-top: 1px solid $color-primary;
+    }
+
+    &::before {
+      content: '';
+
+      position: absolute;
+      top: 50%;
+      left: 15px;
+      transform: translate(-50%, -50%);
+
+      width: 15px;
+      height: 15px;
+
+      border: 1px solid $color-primary;
+      border-radius: 50%;
+    }
+
+    &_error::before {
+      border-color: $color-error;
+      background: $color-error
+    }
+
+    &_correct::before {
+      background: $color-primary;
+    }
+  }
+}
+
+.answer {
+  &__inner {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: flex-start;
+  }
+}
+
+.quizbar {
+  margin-bottom: 30px;
+
+  display: flex;
+  justify-content: center;
+
+  @media (max-width: 925px) {
+    display: block;
+  }
+
+  &__inner {
+    width: 100%;
+    overflow: auto;
+
+    margin: 0 auto;
+
+    display: flex;
+    align-items: center;
+  }
+
+  &__item {
+    padding: 5px 15px;
+
+    font-size: 18px;
+    font-weight: 700;
+    color: $color-primary;
+    white-space: nowrap;
+
+    background: $color-light;
+    border: 1px solid $color-primary;
+    border-top-width: 2px;
+    border-bottom-width: 2px;
+
+    &:last-child {
+      border-right-width: 2px;
+    }
+
+    &:first-child {
+      border-left-width: 2px;
+    }
+
+    &_active {
+      color: $color-light;
+
+      background: $color-primary;
+      border-color: $color-primary;
+    }
   }
 }
 
