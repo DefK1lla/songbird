@@ -1,10 +1,7 @@
-import ru from './localization/ru.json';
-import en from './localization/en.json';
+import Container from '../components/Container';
+import Nav from '../components/Nav';
 
-import LocalStorage from '../../utils/localStorage';
-
-import Container from '../../components/Container';
-import Nav from '../../components/Nav';
+import LocalStorage from '../utils/localStorage';
 
 class Header {
   constructor() {
