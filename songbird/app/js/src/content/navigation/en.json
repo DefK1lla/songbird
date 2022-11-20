@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Home",
+    "hash": "#/"
+  },
+  {
+    "title": "Gallery",
+    "hash": "#/gallery"
+  },
+  {
+    "title": "Quiz",
+    "hash": "#/quiz"
+  },
+  {
+    "isLocale": true
+  }
+]

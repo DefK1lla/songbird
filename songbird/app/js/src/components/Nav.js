@@ -14,13 +14,22 @@ class Nav extends HTMLElement {
       navItem.className = 'nav__item';
       const navLink = document.createElement('a');
       navLink.className = 'nav__link';
-      navLink.href = '#/' + elem.split(' ').join('-').toLowerCase();
-      navLink.innerHTML = elem.toUpperCase();
+      navLink.href = elem.hash;
+      navLink.textContent = elem.title.toUpperCase();
       navItem.append(navLink);
+
+      if (elem.isLocale) {
+        navItem.addEventListener('click', this.handleLocaleClick);
+      }
+
       return navItem;
     });
 
     navList.append(...navElems);
+  }
+
+  handleLocaleClick = (e) => {
+    console.log('change locale')
   }
 }
 

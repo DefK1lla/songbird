@@ -1,3 +1,6 @@
+import navRu from '../content/navigation/ru.json';
+import navEn from '../content/navigation/en.json';
+
 import Container from '../components/Container';
 import Nav from '../components/Nav';
 
@@ -6,7 +9,9 @@ import LocalStorage from '../utils/localStorage';
 class Header {
   constructor() {
     const locale = LocalStorage.getLocale() || 'en';
-    this.navList = ['Home', 'Start game', 'Gallery', locale];
+
+    this.navList = locale === 'en' ? navEn : navRu;
+    this.navList.find(elem => elem.isLocale).title = locale;
 
     this.container = new Container();
 

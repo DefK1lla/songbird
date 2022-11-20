@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Главная",
+    "hash": "#/"
+  },
+  {
+    "title": "Галерея",
+    "hash": "#/gallery"
+  },
+  {
+    "title": "Викторина",
+    "hash": "#/quiz"
+  },
+  {
+    "isLocale": true
+  }
+]
