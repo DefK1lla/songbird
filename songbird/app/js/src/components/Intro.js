@@ -27,11 +27,11 @@ class Intro extends HTMLDivElement {
     this.links.className = 'intro__btns';
     this.inner.append(this.links);
 
-    this.quizeLink = document.createElement('a');
-    this.quizeLink.href = '#/quize';
-    this.quizeLink.className = 'intro__btn btn';
-    this.quizeLink.textContent = 'Start quize';
-    this.links.append(this.quizeLink);
+    this.quizLink = document.createElement('a');
+    this.quizLink.href = '#/quiz';
+    this.quizLink.className = 'intro__btn btn';
+    this.quizLink.textContent = 'Start quiz';
+    this.links.append(this.quizLink);
 
     this.galleryLink = document.createElement('a');
     this.galleryLink.href = '#/gallery';
