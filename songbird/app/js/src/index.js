@@ -16,6 +16,7 @@ const renderPage = {
 
 function changePage(e) {
   const page = getPageHash();
+  window.scrollTo(0, 0);
   if (page in renderPage) {
     renderPage[page]();
   } else {
