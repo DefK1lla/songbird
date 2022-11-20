@@ -40,7 +40,7 @@ function imagesCompressor() {
 }
 
 function scriptsBuilder() {
-  return browserify('app/js/main.js', { debug: true })
+  return browserify('app/js/src/main.js', { debug: true })
     .transform('babelify', { presets: ['@babel/env'], sourceMaps: true })
     .bundle()
     .pipe(source('main.min.js'))
