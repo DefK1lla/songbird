@@ -36,10 +36,12 @@ class Card extends HTMLDivElement {
     this.body.className = 'card__body';
     this.append(this.body);
 
-    this.description = document.createElement('p');
-    this.description.innerHTML = obj.description;
-    this.description.className = 'card__description';
-    this.body.append(this.description);
+    if (obj.description) {
+      this.description = document.createElement('p');
+      this.description.innerHTML = obj.description;
+      this.description.className = 'card__description';
+      this.body.append(this.description);
+    }
 
     if (obj.audio) {
       this.player = new Player(obj.audio);

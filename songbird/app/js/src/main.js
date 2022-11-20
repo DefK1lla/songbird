@@ -2,6 +2,7 @@ import Header from './layout/Header';
 import Footer from './layout/Footer';
 
 import Gallery from './pages/Gallery';
+import Quiz from './pages/Quiz';
 import Index from './pages/Index';
 
 import LocalStorage from './utils/localStorage';
@@ -9,9 +10,7 @@ import getPageHash from './utils/getPageHash';
 
 const renderPage = {
   'index': Index.render,
-  'start-game': () => {
-    console.log('start');
-  },
+  'quiz': Quiz.render,
   'gallery': Gallery.render
 };
 
