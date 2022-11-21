@@ -14,6 +14,10 @@ class LocalStorage {
   static setScore = (score) => {
     localStorage.setItem('score', score);
   };
+
+  static removeScore = () => {
+    localStorage.removeItem('score');
+  };
 }
 
 export default LocalStorage;

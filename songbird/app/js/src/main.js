@@ -3,6 +3,7 @@ import Footer from './layout/Footer';
 
 import Gallery from './pages/Gallery';
 import Quiz from './pages/Quiz';
+import Results from './pages/Results';
 import Index from './pages/Index';
 
 import LocalStorage from './utils/localStorage';
@@ -11,7 +12,8 @@ import getPageHash from './utils/getPageHash';
 const renderPage = {
   'index': Index.render,
   'quiz': Quiz.render,
-  'gallery': Gallery.render
+  'gallery': Gallery.render,
+  'results': Results.render
 };
 
 function changePage(e) {
