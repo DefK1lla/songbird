@@ -44,7 +44,9 @@ class Answer extends HTMLDivElement {
     this.nextBtn.disabled = true;
     this.optionsContainer.append(this.nextBtn);
 
-    this.answerCard = new Card(placeholder);
+    this.answerCard = new Card({
+      name: this.content.text
+    });
     this.inner.append(this.answerCard);
 
     this.successAudio = new Audio('./assets/audio/answer/success.mp3');
@@ -54,7 +56,7 @@ class Answer extends HTMLDivElement {
   clickHandlerCreator = (answer) => {
     const answerComponent = this;
     return function (e) {
-      answerComponent.answerCard.player.audio.pause();
+      answerComponent.answerCard.player?.audio.pause();
       answerComponent.answerCard.remove();
       answerComponent.answerCard = new Card(answer);
       answerComponent.inner.append(answerComponent.answerCard);
