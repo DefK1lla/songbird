@@ -8,7 +8,6 @@ import QuizBar from '../components/QuizBar';
 import LocalStorage from '../utils/localStorage';
 
 class Quiz {
-  coordX = 0;
   placeholder = {
     name: '******',
     image: './assets/images/question/mark.png',
@@ -64,15 +63,14 @@ class Quiz {
 
     this.question.remove();
     this.answer.remove();
-    this.generateQuestion();
 
-    this.step++;
-    if (this.step === 7) {
+    if (this.step === 6) {
       LocalStorage.setScore(this.score);
       location.hash = '#/results';
     } else {
-      this.coordX++;
+      this.step++;
       this.quizbar.next();
+      this.generateQuestion();
     }
   };
 
@@ -89,8 +87,9 @@ class Quiz {
   };
 
   getRandomBird = () => {
-    const coordY = Math.round(0 - 0.5 + Math.random() * ((this.birds[this.coordX].length - 1) - 0 + 1));
-    const bird = this.birds[this.coordX][coordY];
+    const coordX = this.step - 1;
+    const coordY = Math.round(0 - 0.5 + Math.random() * ((this.birds[coordX].length - 1) - 0 + 1));
+    const bird = this.birds[coordX][coordY];
     const isExists = this.answers.find(answer => answer.name === bird.name);
     if (isExists) return this.getRandomBird();
     return bird;
